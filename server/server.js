@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const axios = require('axios');
 const express = require('express');
 const morgan = require('morgan');
 
@@ -16,7 +17,8 @@ app.get('/movieInfo/:inputValue', (req, res) => {
     })
     .then((response) => {
       res.send(response.data);
-    });
+    })
+    .catch(err => res.status(400).json({}));
   });
 
 app.get('/movie/:id', (req, res) => {
@@ -26,7 +28,8 @@ app.get('/movie/:id', (req, res) => {
     })
     .then((response) => {
         res.send(response.data);
-    });
+    })
+    .catch(err => res.status(400).json({}));;
 });
 
 module.exports = app;
